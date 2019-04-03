@@ -28,7 +28,7 @@
  notifications:
     slack:
         rooms:
-            - secure: kDm31DbynpI1fB2vyK9BkleFQAwDPPwtvb5gOFGNxyRrGWBsnINoSW6MA4287TA/xCggl9qoL2kXqwiqHJlQ3gSFkHvqQcv9PlNW8TjfqJNiJ4sfBjc9MeVlsT5tGhJkCqRLTu/DK54V8IH/5oykZv03mn4LGipKrAr0qsHU4/edgBZjdOBmDGfaRNytIj8D+FhuGGlynxs4P6pVIuzpKq/RPbEUB1P4bunL62UoQOccFcDCng2Of5opOXZ3Yuq2m2Et7+RAMq6U+LMvJgvTVID8XsFbLSh7ZqRakzgrr1xXz9j1DFLYu2sVuMwaxewpfeYGKmi+oqp9WWmenAh0Sj2wONmQl0NOQCrLnAvBp6x+mOMr4x9vJJVv2GJNPsb5j1755cVo/oyuEtxMX40+xmsG2Rjv/77Ph2z5GUNuZpv2thGhMzE01iWvYx3UaMRm/H1Ngt1Zgv0LaJovZLKMBB61cu7WXOzZ+jdwoCsn379pYAOic0eZQCf5ftFtDP9TKOhJmXLip0oj2Ml9mEXtVeIui1qPIx6x09eJoeL62i2nDRXhpk97foO9glQ2KHtEjIy7uaS+zJ0Br3qB/5O8iDsuFdsORWby5HBHsCZ1uj9jSddKAZHHFo8/Bb6PNUgxqC4GZ62VFnl3Ql1xKRv+7xgohooDjEJ6/0gMtelBQNo=
+            - secure: A5n2ef+krUdrt4Vc49jo42GbTTf06cJ72bHeK5+b7cK4W+BrPpBMAW/3nIbn3CXk8yyHz18JGCw0Assq/uDM4zDfmCb/eLu9N0VQsj5NJoL5NK5+S4iEYPE4SItRM3UMRgJpgRHyCj6K6gDLyJTlUAeYuNRvvF9f4sCYJanA7v0yXbc/KWukzhCq1/rCtxOeIp90MnaullwuEmmW3xjEp1kCA1TxTQFE7L97TF0hZdeI+bXZ0oF57mubDIdrP4O3WmOWBDtiI/h1zI1MWpG8tUxtB3IfquZf02h+8q2Mv7LoR1kP3eUoCEcqxCSA7FkYjNegOPGZ07Pe57XE3Pi0+wvGzfCjQrv/iHacQzoUJ1Jkb1fjDLGpR9AuLet7TU23PYKffuUnOzt4hoYiXag5s1z6Gd0v2D8gMKbOBCcQigIOhmyQ4YC/0sjrn3fCrpqvuNcf4IMVS0B5pcgYqBs/bTE44vZ7tY3QImmteRt7sWdHHrYgLaRf3uljzSgAOMcJg7wAu37uyXMgNrG86p1uuXWXhfwHwHC1AKGSJtPsqPw5TMCIHVmyWDwxVfZtNx/yE2eb/Z4OUWm6Kribkat1zeSPmgFcPsdjj8jKnpUA6L8D2OPCzdn3R5+S8Hb6L+YOURuptcMCXo+gk4KhLl+T7xXQnqUyclJs9M5d2G8A4P8=
         on_success: always
         on_failure: always
  jobs:
@@ -51,7 +51,7 @@
 
         - name: beta_build
           stage: build
-          if: branch =~ ^(beta).*v[0-9]\..*
+          if: branch =~ ^v[0-9]+\.[0-9]+\.[0-9]+_.+
           install:
               - pip install -U platformio
               - platformio update
@@ -70,6 +70,7 @@
                 - ./.pioenvs/esp8285/spiffs.bin
             skip_cleanup: true
             prerelease: true
+            draft: true
             api_key:
                 secure: tZAdW+bg9hEt9K476ADAb5IQTYQUoUNmsrdcEOsHmnrX2iDGcaFoeZUJsEVqav2iMFtSl8EOO6wnsQTZ2AWw998cZU7FsLTnOWs357IUcJGg7W82WCfMdRmdSWwp2I/PncbK7Yjjmcz62LKQ1QPBrxM8IkPvIbi9fcPkaxNHFWcC2Fy91szUqwAXxr32TGd3zHRcnWedEMvHmv9O+8Z+miMwYCCYb22WP5i3JKekOKeXLfcuh4bJIa6wdQ5HBqasou8ufHW2ovRvH0Hxzvom5EwEu+VENH/X98sZhJir1n4D0LJgiQg8gG0YdZd12kwXchiOeYK77Yc2mFXBFRqCRMvD0+GUNtTi6O1zArY1tfw1GMQj3fOPK4es4CBJTZ1YuMEZPudhum0976exyjU/aEd1nBkvjn5Lt83PkclKif8FsawIQweAqeYO4RJzkF/9cZux75bwAmqf70VVBobLgMC4x+yO3OhHNNZ6iCrEb/sMOadvTBGB9hTocFqbVnWPakgcP49gCW3ynq1j0l3MMhLriZWzOJs6d0Wk3Qo/FkZ8v+iG9ZS8R/5j+2K+XSxJNc0Mu8SUZYDTr3VxFFW9yDeTgPzsvkxhqgn4lrHiGqc+4bAvaDnIcwUTpLkjwuc+tkoXMf26rZ0w/cJDTu4uXGrsnf9WwTTtm6Nu+8VUmWc=
             on: 
@@ -80,7 +81,7 @@
 
         - name: release_build
           stage: build
-          if: branch =~ ^v[0-9]\.[0-9]*
+          if: branch =~ ^v[0-9]+\.[0-9]+\.[0-9]+$
           install:
               - pip install -U platformio
               - platformio update
@@ -99,6 +100,7 @@
                 - ./.pioenvs/esp8285/spiffs.bin
             skip_cleanup: true
             prerelease: false
+            draft: true
             api_key:
                 secure: tZAdW+bg9hEt9K476ADAb5IQTYQUoUNmsrdcEOsHmnrX2iDGcaFoeZUJsEVqav2iMFtSl8EOO6wnsQTZ2AWw998cZU7FsLTnOWs357IUcJGg7W82WCfMdRmdSWwp2I/PncbK7Yjjmcz62LKQ1QPBrxM8IkPvIbi9fcPkaxNHFWcC2Fy91szUqwAXxr32TGd3zHRcnWedEMvHmv9O+8Z+miMwYCCYb22WP5i3JKekOKeXLfcuh4bJIa6wdQ5HBqasou8ufHW2ovRvH0Hxzvom5EwEu+VENH/X98sZhJir1n4D0LJgiQg8gG0YdZd12kwXchiOeYK77Yc2mFXBFRqCRMvD0+GUNtTi6O1zArY1tfw1GMQj3fOPK4es4CBJTZ1YuMEZPudhum0976exyjU/aEd1nBkvjn5Lt83PkclKif8FsawIQweAqeYO4RJzkF/9cZux75bwAmqf70VVBobLgMC4x+yO3OhHNNZ6iCrEb/sMOadvTBGB9hTocFqbVnWPakgcP49gCW3ynq1j0l3MMhLriZWzOJs6d0Wk3Qo/FkZ8v+iG9ZS8R/5j+2K+XSxJNc0Mu8SUZYDTr3VxFFW9yDeTgPzsvkxhqgn4lrHiGqc+4bAvaDnIcwUTpLkjwuc+tkoXMf26rZ0w/cJDTu4uXGrsnf9WwTTtm6Nu+8VUmWc=
             on: 
