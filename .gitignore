@@ -3,5 +3,7 @@
 .piolibdeps
 .clang_complete
 .gcc-flags.json
+TestHTML
 
 \.vscode/
+
