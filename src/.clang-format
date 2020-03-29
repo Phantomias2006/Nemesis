@@ -1,0 +1,9 @@
+BasedOnStyle: Google
+AlignConsecutiveMacros: true
+BreakBeforeBraces: Custom
+ColumnLimit: 0
+IndentPPDirectives: BeforeHash
+KeepEmptyLinesAtTheStartOfBlocks: true
+MaxEmptyLinesToKeep: 1
+SortIncludes: false
+SpacesBeforeTrailingComments: 1
